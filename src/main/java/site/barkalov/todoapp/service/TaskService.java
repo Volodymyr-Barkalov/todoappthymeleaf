@@ -45,7 +45,6 @@ public class TaskService {
             return entity;
         } else {
             Optional<Task> task = repository.findById(entity.getId());
-
             if (task.isPresent()) {
                 Task newEntity = task.get();
                 newEntity.setDate(LocalDateTime.now());
@@ -53,11 +52,9 @@ public class TaskService {
                 newEntity.setDescription(entity.getDescription());
                 newEntity.setStatus(entity.isStatus());
                 newEntity = repository.save(newEntity);
-
                 return newEntity;
             } else {
                 entity = repository.save(entity);
-
                 return entity;
             }
         }
@@ -65,7 +62,6 @@ public class TaskService {
 
     public void deleteTaskById(Long id) throws RecordNotFoundException {
         Optional<Task> task = repository.findById(id);
-
         if (task.isPresent()) {
             repository.deleteById(id);
         } else {
